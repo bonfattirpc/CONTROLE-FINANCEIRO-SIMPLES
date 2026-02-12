@@ -1,0 +1,5 @@
+{
+  "name": "Controle Financeiro Simples",
+  "description": "Uma aplicação completa de gestão financeira pessoal com suporte a parcelamentos, visão mensal e relatórios gráficos anuais.",
+  "requestFramePermissions": []
+}
