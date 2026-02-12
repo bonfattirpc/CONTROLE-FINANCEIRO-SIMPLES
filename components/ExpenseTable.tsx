@@ -73,39 +73,39 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({ expenses, onUpdate }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-      <div className="bg-[#1a2c4e] p-3 flex justify-between items-center">
-        <h3 className="font-bold text-white uppercase tracking-wider text-[10px]">Movimentação Financeira (Despesas)</h3>
-        <button onClick={addRow} className="bg-[#ffffff22] text-white py-1 px-4 rounded text-[9px] font-bold hover:bg-[#ffffff44] transition-colors flex items-center gap-2 uppercase">
+      <div className="bg-[#1a2c4e] p-3.5 flex justify-between items-center">
+        <h3 className="font-bold text-white uppercase tracking-wider text-xs">Movimentação Financeira (Despesas)</h3>
+        <button onClick={addRow} className="bg-[#ffffff22] text-white py-1.5 px-5 rounded text-xs font-bold hover:bg-[#ffffff44] transition-colors flex items-center gap-2 uppercase">
           + Inserir
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-sm">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-4 py-3 text-left font-semibold text-gray-400 uppercase text-[9px]">Tipo</th>
-              <th className="px-4 py-3 text-left font-semibold text-gray-400 uppercase text-[9px]">Descrição</th>
-              <th className="px-4 py-3 text-right font-semibold text-gray-400 uppercase text-[9px]">Valor</th>
-              <th className="px-4 py-3 text-center font-semibold text-gray-400 uppercase text-[9px]">Vencimento</th>
-              <th className="px-4 py-3 text-center font-semibold text-gray-400 uppercase text-[9px]">Situação</th>
+              <th className="px-4 py-3 text-left font-semibold text-gray-400 uppercase text-xs">Tipo</th>
+              <th className="px-4 py-3 text-left font-semibold text-gray-400 uppercase text-xs">Descrição</th>
+              <th className="px-4 py-3 text-right font-semibold text-gray-400 uppercase text-xs">Valor</th>
+              <th className="px-4 py-3 text-center font-semibold text-gray-400 uppercase text-xs">Vencimento</th>
+              <th className="px-4 py-3 text-center font-semibold text-gray-400 uppercase text-xs">Situação</th>
               <th className="px-2 py-3 w-10"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {expenses.map((exp) => (
               <tr key={exp.id} className="hover:bg-gray-50 group">
-                <td className="px-4 py-3">
+                <td className="px-4 py-4">
                   <select 
                     value={exp.type}
                     onKeyDown={handleKeyDown}
                     onChange={(e) => handleChange(exp.id, 'type', e.target.value)}
-                    className="bg-transparent border-none focus:ring-0 p-0 text-[10px] font-bold text-gray-500 cursor-pointer uppercase"
+                    className="bg-transparent border-none focus:ring-0 p-0 text-xs font-bold text-gray-500 cursor-pointer uppercase"
                   >
                     <option value="FIXA">FIXA</option>
                     <option value="VARIÁVEL">VARIÁVEL</option>
                   </select>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-4">
                   <div className="flex flex-col">
                     <input 
                       type="text" 
@@ -113,17 +113,17 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({ expenses, onUpdate }) => {
                       onFocus={handleFocus}
                       onKeyDown={handleKeyDown}
                       onChange={(e) => handleChange(exp.id, 'description', e.target.value)}
-                      className="w-full bg-transparent border-none focus:ring-0 p-0 text-gray-600 font-medium"
+                      className="w-full bg-transparent border-none focus:ring-0 p-0 text-gray-600 font-medium text-sm"
                     />
                     {exp.installmentsCount && (
-                      <span className="text-[8px] text-blue-500 font-bold uppercase mt-0.5">
+                      <span className="text-[10px] text-blue-500 font-bold uppercase mt-1">
                         PARCELA {exp.currentInstallment}/{exp.installmentsCount}
                       </span>
                     )}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right">
-                   <div className="flex items-center justify-end font-bold">
+                <td className="px-4 py-4 text-right">
+                   <div className="flex items-center justify-end font-bold text-sm">
                      <span className="text-gray-300 mr-2 font-normal">R$</span>
                      <input 
                         type="number" 
@@ -133,40 +133,40 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({ expenses, onUpdate }) => {
                         onFocus={handleFocus}
                         onKeyDown={handleKeyDown}
                         onChange={(e) => handleChange(exp.id, 'value', parseFloat(e.target.value) || 0)}
-                        className="w-20 text-right bg-transparent border-none focus:ring-0 p-0 text-gray-700"
+                        className="w-24 text-right bg-transparent border-none focus:ring-0 p-0 text-gray-700 font-bold"
                       />
                    </div>
                 </td>
-                <td className="px-4 py-3 text-center">
+                <td className="px-4 py-4 text-center">
                   <input 
                     type="date" 
                     value={exp.date}
                     onKeyDown={handleKeyDown}
                     onChange={(e) => handleChange(exp.id, 'date', e.target.value)}
-                    className="bg-transparent border-none focus:ring-0 p-0 text-gray-400 text-[10px] text-center"
+                    className="bg-transparent border-none focus:ring-0 p-0 text-gray-400 text-xs text-center"
                   />
                 </td>
-                <td className="px-4 py-3 text-center">
+                <td className="px-4 py-4 text-center">
                    <select 
                     value={exp.status}
                     onKeyDown={handleKeyDown}
                     onChange={(e) => handleChange(exp.id, 'status', e.target.value)}
-                    className={`text-[9px] font-black border-none focus:ring-0 cursor-pointer bg-transparent text-center uppercase ${statusColors[exp.status]}`}
+                    className={`text-[11px] font-black border-none focus:ring-0 cursor-pointer bg-transparent text-center uppercase ${statusColors[exp.status]}`}
                   >
                     <option value="A PAGAR">A PAGAR</option>
                     <option value="PAGO">PAGO</option>
                   </select>
                 </td>
-                <td className="px-2 py-3 text-center">
+                <td className="px-2 py-4 text-center">
                    <button onClick={() => removeRow(exp.id)} className="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                   </button>
                 </td>
               </tr>
             ))}
             {expenses.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-12 text-center text-gray-400 italic">
+                <td colSpan={6} className="px-4 py-16 text-center text-gray-400 italic text-sm">
                   Sem despesas para o período selecionado
                 </td>
               </tr>
